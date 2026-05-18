@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Search, ChevronDown, Star, ExternalLink } from 'lucide-react'
 
 const templates = [
-  { id: 1, title: 'Rizoma Space', category: 'landing', tags: ['Servicios', 'Contenedores'], img: '/screenshots/rizoma-space.jpg', desc: 'Landing page para empresa de servicios con galería, certificaciones y cotizador WhatsApp.' },
+  { id: 'rizoma-space', title: 'Rizoma Space', category: 'landing', tags: ['Servicios', 'Contenedores'], img: '/screenshots/rizoma-space.jpg', desc: 'Landing page para empresa de servicios con galería, certificaciones y cotizador WhatsApp.' },
   { id: 2, title: 'MiCotizador', category: 'saas', tags: ['Herramienta', 'Cotizaciones'], img: '/screenshots/micotizador.jpg', desc: 'SaaS para generar cotizaciones con autenticación, clientes y productos.' },
   { id: 3, title: 'Tienda Online', category: 'ecommerce', tags: ['E-commerce', 'Catálogo'], img: '/screenshots/tienda-online.jpg', desc: 'Tienda virtual con carrito de compras, pasarela de pago y panel de administración.' },
   { id: 4, title: 'Bufete Jurídico', category: 'corporativa', tags: ['Profesional', 'Servicios'], img: '/screenshots/bufete-juridico.jpg', desc: 'Web corporativa para estudios jurídicos con perfiles de abogados y blog.' },

@@ -20,8 +20,24 @@ const templateLookup = {
   12: { category: 'ecommerce', title: 'Inmobiliaria' },
 }
 
+const standaloneTemplates = {
+  'rizoma-space': '/templates/rizoma-space/index.html',
+}
+
 export default function PreviewPage() {
   const { id } = useParams()
+
+  const standaloneUrl = standaloneTemplates[id]
+  if (standaloneUrl) {
+    return (
+      <iframe
+        src={standaloneUrl}
+        title={id}
+        className="w-full h-screen border-0"
+      />
+    )
+  }
+
   const info = templateLookup[id]
   if (!info) {
     return (
