@@ -39,15 +39,13 @@ async function run() {
     const card = page.locator('h3.font-semibold.text-gray-900', { hasText: t.label }).first();
     await card.scrollIntoViewIfNeeded();
     await card.click();
-    await page.waitForTimeout(2500);
+    await page.waitForTimeout(3000);
 
-    await page.evaluate(() => {
-      document.querySelectorAll('[class*="sticky"][class*="z-50"]').forEach(el => el.style.display = 'none');
-    });
-    await page.waitForTimeout(500);
+    const demo = page.locator('#demo-content');
+    await demo.waitFor({ state: 'visible', timeout: 5000 });
 
     const filePath = join(outDir, `${t.name}.jpg`);
-    await page.screenshot({ path: filePath, fullPage: true, type: 'jpeg', quality: 85 });
+    await demo.screenshot({ path: filePath, type: 'jpeg', quality: 85 });
     console.log(`  ✅ screenshots/${t.name}.jpg`);
   }
 

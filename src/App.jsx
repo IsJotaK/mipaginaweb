@@ -239,7 +239,7 @@ function TemplatePreview({ template, onBack }) {
           Quiero esta plantilla
         </a>
       </div>
-      <div className="min-h-[calc(100vh-48px)]">
+      <div id="demo-content" className="min-h-[calc(100vh-48px)]">
         {renderDemo()}
       </div>
     </div>
