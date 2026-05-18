@@ -27,6 +27,8 @@ export function SaasDemo({ template }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [authMode, setAuthMode] = useState('login')
+  const [demoMode, setDemoMode] = useState(false)
+  const [dashboardPage, setDashboardPage] = useState('dashboard')
 
   const Nav = () => (
     <nav className="bg-white border-b border-gray-100 px-4 sm:px-6 lg:px-8 sticky top-0 z-30">
@@ -43,7 +45,7 @@ export function SaasDemo({ template }) {
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => { setShowLogin(true); setAuthMode('login') }} className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2"><LogIn className="w-4 h-4" /> Iniciar Sesión</button>
-          <button onClick={() => { setShowLogin(true); setAuthMode('register') }} className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200">Prueba Gratis</button>
+          <button onClick={() => setDemoMode(true)} className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200">Prueba Gratis</button>
           <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -109,10 +111,10 @@ export function SaasDemo({ template }) {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">La herramienta que tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">negocio necesita</span></h1>
               <p className="mt-4 text-lg text-gray-600 max-w-lg">Prueba gratis por 14 días. Sin tarjeta de crédito. Cancela cuando quieras.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <button onClick={() => { setShowLogin(true); setAuthMode('register') }} className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200 flex items-center gap-2">
-                  <UserPlus className="w-4 h-4" /> Comenzar Gratis
+                <button onClick={() => setDemoMode(true)} className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200 flex items-center gap-2">
+                  <UserPlus className="w-4 h-4" /> Probar App
                 </button>
-                <button onClick={() => setPage('features')} className="bg-white text-gray-700 px-6 py-3 rounded-xl font-semibold border border-gray-200 hover:border-gray-300">Ver Demo</button>
+                <button onClick={() => setPage('features')} className="bg-white text-gray-700 px-6 py-3 rounded-xl font-semibold border border-gray-200 hover:border-gray-300">Conocer más</button>
               </div>
             </div>
             <div className="hidden lg:block">
@@ -224,7 +226,140 @@ export function SaasDemo({ template }) {
     </section>
   )
 
+  const DashboardPage = () => (
+    <div className="flex h-[calc(100vh-48px)] bg-gray-50">
+      <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-gray-200 p-4">
+        <div className="flex items-center gap-2 font-bold text-lg mb-8">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white text-xs font-bold">M</div>
+          MiCotizador
+        </div>
+        <nav className="flex-1 space-y-1">
+          {[
+            { key: 'dashboard', label: 'Dashboard', icon: '📊' },
+            { key: 'cotizaciones', label: 'Cotizaciones', icon: '📄' },
+            { key: 'clientes', label: 'Clientes', icon: '👥' },
+            { key: 'productos', label: 'Productos', icon: '📦' },
+            { key: 'config', label: 'Configuración', icon: '⚙️' },
+          ].map(item => (
+            <button key={item.key} onClick={() => setDashboardPage(item.key)}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${dashboardPage === item.key ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-50'}`}>
+              <span>{item.icon}</span> {item.label}
+            </button>
+          ))}
+        </nav>
+        <button onClick={() => setDemoMode(false)} className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:bg-gray-50 mt-4 border-t pt-4">
+          ← Salir de demo
+        </button>
+      </aside>
+      <div className="flex-1 overflow-auto">
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 capitalize">{dashboardPage}</h1>
+              <p className="text-sm text-gray-500">Demo interactiva - Modo de prueba</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="hidden sm:inline text-xs px-2 py-1 rounded-full bg-green-100 text-green-700 font-medium">Demo activa</span>
+              <button onClick={() => setDemoMode(false)} className="lg:hidden text-sm text-gray-500 hover:text-gray-900">Salir</button>
+            </div>
+          </div>
+
+          {dashboardPage === 'dashboard' && (
+            <div className="space-y-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { label: 'Cotizaciones del mes', value: '47', change: '+12%', color: 'bg-blue-500' },
+                  { label: 'Clientes activos', value: '23', change: '+3', color: 'bg-emerald-500' },
+                  { label: 'Productos registrados', value: '156', change: '+8', color: 'bg-purple-500' },
+                  { label: 'Tasa de conversión', value: '68%', change: '+5%', color: 'bg-amber-500' },
+                ].map(s => (
+                  <div key={s.label} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-500">{s.label}</span>
+                      <div className={`w-2 h-2 rounded-full ${s.color}`} />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">{s.value}</p>
+                    <p className="text-sm text-green-600 mt-1">{s.change}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="p-5 border-b border-gray-100">
+                  <h2 className="font-semibold text-gray-900">Últimas Cotizaciones</h2>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                      <tr>
+                        <th className="text-left p-4 font-medium">Cliente</th>
+                        <th className="text-left p-4 font-medium">Producto</th>
+                        <th className="text-left p-4 font-medium">Monto</th>
+                        <th className="text-left p-4 font-medium">Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {[
+                        { client: 'Constructora del Sur', product: 'Contenedor 7m³', amount: '$450.000', status: 'Aprobada', color: 'text-green-700 bg-green-50' },
+                        { client: 'Restaurante La Unión', product: 'Menú Digital', amount: '$250.000', status: 'Pendiente', color: 'text-amber-700 bg-amber-50' },
+                        { client: 'Clínica DentalCare', product: 'Web Corporativa', amount: '$890.000', status: 'Borrador', color: 'text-gray-700 bg-gray-100' },
+                        { client: 'FitClub Temuco', product: 'Landing Page', amount: '$180.000', status: 'Aprobada', color: 'text-green-700 bg-green-50' },
+                      ].map(row => (
+                        <tr key={row.client} className="hover:bg-gray-50">
+                          <td className="p-4 font-medium text-gray-900">{row.client}</td>
+                          <td className="p-4 text-gray-600">{row.product}</td>
+                          <td className="p-4 text-gray-900">{row.amount}</td>
+                          <td className="p-4"><span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${row.color}`}>{row.status}</span></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {dashboardPage === 'cotizaciones' && (
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+              <span className="text-5xl mb-4 block">📄</span>
+              <h3 className="text-lg font-semibold text-gray-900">Gestión de Cotizaciones</h3>
+              <p className="text-gray-500 text-sm mt-1">Crea, edita y envía cotizaciones profesionales.</p>
+              <button className="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-blue-700">Nueva Cotización</button>
+            </div>
+          )}
+
+          {dashboardPage === 'clientes' && (
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+              <span className="text-5xl mb-4 block">👥</span>
+              <h3 className="text-lg font-semibold text-gray-900">Base de Clientes</h3>
+              <p className="text-gray-500 text-sm mt-1">Administra tus clientes con historial de cotizaciones.</p>
+              <button className="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-blue-700">+ Nuevo Cliente</button>
+            </div>
+          )}
+
+          {dashboardPage === 'productos' && (
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+              <span className="text-5xl mb-4 block">📦</span>
+              <h3 className="text-lg font-semibold text-gray-900">Catálogo de Productos</h3>
+              <p className="text-gray-500 text-sm mt-1">Gestiona tu catálogo con precios y descripciones.</p>
+              <button className="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-blue-700">+ Agregar Producto</button>
+            </div>
+          )}
+
+          {dashboardPage === 'config' && (
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+              <span className="text-5xl mb-4 block">⚙️</span>
+              <h3 className="text-lg font-semibold text-gray-900">Configuración</h3>
+              <p className="text-gray-500 text-sm mt-1">Personaliza tu empresa, impuestos y plantillas.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+
   const renderPage = () => {
+    if (demoMode) return <DashboardPage />
     switch (page) {
       case 'inicio': return <InicioPage />;
       case 'features': return <FeaturesPage />;
