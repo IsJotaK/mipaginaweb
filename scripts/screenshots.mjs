@@ -41,6 +41,11 @@ async function run() {
     await card.click();
     await page.waitForTimeout(2500);
 
+    await page.evaluate(() => {
+      document.querySelectorAll('[class*="sticky"][class*="z-50"]').forEach(el => el.style.display = 'none');
+    });
+    await page.waitForTimeout(500);
+
     const filePath = join(outDir, `${t.name}.jpg`);
     await page.screenshot({ path: filePath, fullPage: true, type: 'jpeg', quality: 85 });
     console.log(`  ✅ screenshots/${t.name}.jpg`);
