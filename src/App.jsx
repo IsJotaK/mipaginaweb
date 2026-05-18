@@ -7,18 +7,18 @@ import { SaasDemo } from './demos/SaasDemo'
 import { BlogDemo } from './demos/BlogDemo'
 
 const templates = [
-  { id: 1, title: 'Rizoma Space', category: 'landing', tags: ['Servicios', 'Contenedores'], color: 'from-emerald-800 to-green-500', desc: 'Landing page para empresa de servicios con galería, certificaciones y cotizador WhatsApp.' },
-  { id: 2, title: 'MiCotizador', category: 'saas', tags: ['Herramienta', 'Cotizaciones'], color: 'from-blue-700 to-cyan-400', desc: 'SaaS para generar cotizaciones con autenticación, clientes y productos.' },
-  { id: 3, title: 'Tienda Online', category: 'ecommerce', tags: ['E-commerce', 'Catálogo'], color: 'from-violet-700 to-pink-500', desc: 'Tienda virtual con carrito de compras, pasarela de pago y panel de administración.' },
-  { id: 4, title: 'Bufete Jurídico', category: 'corporativa', tags: ['Profesional', 'Servicios'], color: 'from-slate-800 to-blue-900', desc: 'Web corporativa para estudios jurídicos con perfiles de abogados y blog.' },
-  { id: 5, title: 'Restaurante', category: 'landing', tags: ['Gastronomía', 'Menú'], color: 'from-amber-700 to-orange-400', desc: 'Landing con menú digital, galería de platos y reservas online.' },
-  { id: 6, title: 'Blog Personal', category: 'blog', tags: ['Contenido', 'Blog'], color: 'from-teal-700 to-emerald-400', desc: 'Blog moderno con sistema de artículos, categorías y newsletter.' },
-  { id: 7, title: 'Clínica Dental', category: 'corporativa', tags: ['Salud', 'Reservas'], color: 'from-cyan-700 to-sky-400', desc: 'Web para clínicas con agenda online y perfiles de doctores.' },
-  { id: 8, title: 'Constructora', category: 'landing', tags: ['Construcción', 'Portafolio'], color: 'from-stone-700 to-yellow-700', desc: 'Landing con portafolio de proyectos y calculadora de presupuestos.' },
-  { id: 9, title: 'Marketplace', category: 'ecommerce', tags: ['Multi-vendedor'], color: 'from-fuchsia-700 to-rose-500', desc: 'Marketplace completo con múltiples vendedores y dashboard.' },
-  { id: 10, title: 'FitClub', category: 'landing', tags: ['Fitness', 'Planes'], color: 'from-red-700 to-orange-500', desc: 'Landing para gimnasios con membresías, horarios y registro.' },
-  { id: 11, title: 'Agencia Digital', category: 'corporativa', tags: ['Agencia', 'Portafolio'], color: 'from-indigo-700 to-purple-500', desc: 'Web para agencias con portafolio interactivo y blog.' },
-  { id: 12, title: 'Inmobiliaria', category: 'ecommerce', tags: ['Propiedades'], color: 'from-green-800 to-lime-500', desc: 'Catálogo de propiedades con filtros y tour virtual.' },
+  { id: 1, title: 'Rizoma Space', category: 'landing', tags: ['Servicios', 'Contenedores'], img: '/screenshots/rizoma-space.jpg', desc: 'Landing page para empresa de servicios con galería, certificaciones y cotizador WhatsApp.' },
+  { id: 2, title: 'MiCotizador', category: 'saas', tags: ['Herramienta', 'Cotizaciones'], img: '/screenshots/micotizador.jpg', desc: 'SaaS para generar cotizaciones con autenticación, clientes y productos.' },
+  { id: 3, title: 'Tienda Online', category: 'ecommerce', tags: ['E-commerce', 'Catálogo'], img: '/screenshots/tienda-online.jpg', desc: 'Tienda virtual con carrito de compras, pasarela de pago y panel de administración.' },
+  { id: 4, title: 'Bufete Jurídico', category: 'corporativa', tags: ['Profesional', 'Servicios'], img: '/screenshots/bufete-juridico.jpg', desc: 'Web corporativa para estudios jurídicos con perfiles de abogados y blog.' },
+  { id: 5, title: 'Restaurante', category: 'landing', tags: ['Gastronomía', 'Menú'], img: '/screenshots/restaurante.jpg', desc: 'Landing con menú digital, galería de platos y reservas online.' },
+  { id: 6, title: 'Blog Personal', category: 'blog', tags: ['Contenido', 'Blog'], img: '/screenshots/blog-personal.jpg', desc: 'Blog moderno con sistema de artículos, categorías y newsletter.' },
+  { id: 7, title: 'Clínica Dental', category: 'corporativa', tags: ['Salud', 'Reservas'], img: '/screenshots/clinica-dental.jpg', desc: 'Web para clínicas con agenda online y perfiles de doctores.' },
+  { id: 8, title: 'Constructora', category: 'landing', tags: ['Construcción', 'Portafolio'], img: '/screenshots/constructora.jpg', desc: 'Landing con portafolio de proyectos y calculadora de presupuestos.' },
+  { id: 9, title: 'Marketplace', category: 'ecommerce', tags: ['Multi-vendedor'], img: '/screenshots/marketplace.jpg', desc: 'Marketplace completo con múltiples vendedores y dashboard.' },
+  { id: 10, title: 'FitClub', category: 'landing', tags: ['Fitness', 'Planes'], img: '/screenshots/fitclub.jpg', desc: 'Landing para gimnasios con membresías, horarios y registro.' },
+  { id: 11, title: 'Agencia Digital', category: 'corporativa', tags: ['Agencia', 'Portafolio'], img: '/screenshots/agencia-digital.jpg', desc: 'Web para agencias con portafolio interactivo y blog.' },
+  { id: 12, title: 'Inmobiliaria', category: 'ecommerce', tags: ['Propiedades'], img: '/screenshots/inmobiliaria.jpg', desc: 'Catálogo de propiedades con filtros y tour virtual.' },
 ]
 
 const categories = [
@@ -135,14 +135,10 @@ function App() {
             {filtered.map(t => (
               <article key={t.id} onClick={() => setPreview(t)}
                 className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className={`h-48 bg-gradient-to-br ${t.color} flex items-center justify-center relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-black/10" />
-                  <div className="relative z-10 text-center p-4">
-                    <div className="w-16 h-16 mx-auto rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center text-white text-2xl font-bold mb-2">{t.title[0]}</div>
-                    <p className="text-white/90 font-semibold text-sm">{t.title}</p>
-                  </div>
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 flex items-center justify-center">
-                    <span className="text-white font-semibold flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-xl">
+                <div className="h-48 bg-gray-100 overflow-hidden relative">
+                  <img src={t.img} alt={t.title} className="w-full h-full object-cover object-top" loading="lazy" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                    <span className="text-white font-semibold flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
                       <ExternalLink className="w-4 h-4" /> Probar Demo
                     </span>
                   </div>
