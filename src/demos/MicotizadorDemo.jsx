@@ -3,14 +3,16 @@ import { useState } from 'react'
 const fmt = (n) => (n || 0).toLocaleString('es-CL')
 
 const defaultProducts = [
-  { id: 1, name: 'Split 9000 BTU', category: 'Equipos', price: 450000, unit: 'unidad' },
-  { id: 2, name: 'Split 12000 BTU', category: 'Equipos', price: 550000, unit: 'unidad' },
-  { id: 3, name: 'Split 18000 BTU', category: 'Equipos', price: 750000, unit: 'unidad' },
-  { id: 4, name: 'Tubería cobre 1/4"', category: 'Materiales', price: 12000, unit: 'metro' },
-  { id: 5, name: 'Tubería cobre 3/8"', category: 'Materiales', price: 15000, unit: 'metro' },
-  { id: 6, name: 'Cable eléctrico 2x14', category: 'Materiales', price: 5000, unit: 'metro' },
-  { id: 7, name: 'Instalación split básica', category: 'Servicios', price: 80000, unit: 'global' },
-  { id: 8, name: 'Mano de obra adicional', category: 'Servicios', price: 40000, unit: 'hrs' },
+  { id: 1, name: 'Consultoría básica', category: 'Servicios', price: 150000, unit: 'global' },
+  { id: 2, name: 'Consultoría avanzada', category: 'Servicios', price: 350000, unit: 'global' },
+  { id: 3, name: 'Soporte técnico mensual', category: 'Servicios', price: 80000, unit: 'mes' },
+  { id: 4, name: 'Capacitación presencial', category: 'Servicios', price: 200000, unit: 'sesión' },
+  { id: 5, name: 'Diseño gráfico básico', category: 'Diseño', price: 120000, unit: 'global' },
+  { id: 6, name: 'Diseño gráfico premium', category: 'Diseño', price: 280000, unit: 'global' },
+  { id: 7, name: 'Desarrollo web básico', category: 'Desarrollo', price: 450000, unit: 'global' },
+  { id: 8, name: 'Desarrollo web avanzado', category: 'Desarrollo', price: 950000, unit: 'global' },
+  { id: 9, name: 'Mantención mensual web', category: 'Desarrollo', price: 60000, unit: 'mes' },
+  { id: 10, name: 'Hosting anual', category: 'Desarrollo', price: 120000, unit: 'año' },
 ]
 
 const defaultClients = [
@@ -177,7 +179,7 @@ export function MicotizadorDemo() {
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:border-brand-400" />
           <select value={prodForm.category} onChange={e => setProdForm({ ...prodForm, category: e.target.value })}
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:border-brand-400 bg-white">
-            {['Equipos', 'Materiales', 'Servicios'].map(c => <option key={c}>{c}</option>)}
+            {['Servicios', 'Diseño', 'Desarrollo'].map(c => <option key={c}>{c}</option>)}
           </select>
           <input type="number" placeholder="Precio" value={prodForm.price} onChange={e => setProdForm({ ...prodForm, price: e.target.value })}
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:border-brand-400" />
