@@ -6,7 +6,7 @@ import { SaasDemo } from './demos/SaasDemo'
 import { BlogDemo } from './demos/BlogDemo'
 
 const templateLookup = {
-  1: { category: 'landing', title: 'Rizoma Space' },
+  1: { category: 'landing', title: 'ContainerPro' },
   2: { category: 'saas', title: 'MiCotizador' },
   3: { category: 'ecommerce', title: 'Tienda Online' },
   4: { category: 'corporativa', title: 'Bufete Jurídico' },
