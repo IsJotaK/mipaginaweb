@@ -21,7 +21,7 @@ const templateLookup = {
 }
 
 const standaloneTemplates = {
-  'rizoma-space': '/templates/rizoma-space/index.html',
+  'contenedores': '/templates/rizoma-space/index.html',
 }
 
 export default function PreviewPage() {
