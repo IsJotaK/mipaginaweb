@@ -1,10 +1,5 @@
 import { useState } from 'react'
-import { Search, ExternalLink, ChevronDown, Star, ArrowLeft } from 'lucide-react'
-import { LandingDemo } from './demos/LandingDemo'
-import { EcommerceDemo } from './demos/EcommerceDemo'
-import { CorporateDemo } from './demos/CorporateDemo'
-import { SaasDemo } from './demos/SaasDemo'
-import { BlogDemo } from './demos/BlogDemo'
+import { Search, ChevronDown, Star, ExternalLink } from 'lucide-react'
 
 const templates = [
   { id: 1, title: 'Rizoma Space', category: 'landing', tags: ['Servicios', 'Contenedores'], img: '/screenshots/rizoma-space.jpg', desc: 'Landing page para empresa de servicios con galería, certificaciones y cotizador WhatsApp.' },
@@ -33,7 +28,6 @@ const categories = [
 function App() {
   const [filter, setFilter] = useState('todas')
   const [search, setSearch] = useState('')
-  const [preview, setPreview] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
 
   const filtered = templates.filter(t => {
@@ -43,8 +37,8 @@ function App() {
     return matchCategory && matchSearch
   })
 
-  if (preview) {
-    return <TemplatePreview template={preview} onBack={() => setPreview(null)} />
+  const openPreview = (id) => {
+    window.open(`/preview/${id}`, '_blank')
   }
 
   return (
@@ -52,7 +46,7 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <a href="#" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-sm">M</div>
               <span className="font-semibold text-lg">Mi<span className="text-blue-600">Pagina</span>Web</span>
             </a>
@@ -87,7 +81,7 @@ function App() {
             Tu página web en <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">24 horas</span>
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto">
-            Explora y prueba nuestras plantillas en vivo. Haz click y navega como si fuera tu sitio.
+            Explora sitios web reales terminados. Elige el que más te guste y lo personalizamos para tu negocio.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a href="#galeria" className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2">
@@ -103,7 +97,7 @@ function App() {
       <section id="galeria" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Galería de <span className="text-blue-600">Plantillas</span></h2>
-          <p className="mt-2 text-gray-600">Haz click en cualquier plantilla para probarla en vivo</p>
+          <p className="mt-2 text-gray-600">Haz click en cualquier plantilla para ver el sitio completo</p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
@@ -133,13 +127,13 @@ function App() {
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map(t => (
-              <article key={t.id} onClick={() => setPreview(t)}
+              <article key={t.id} onClick={() => openPreview(t.id)}
                 className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
                 <div className="h-48 bg-gray-100 overflow-hidden relative">
                   <img src={t.img} alt={t.title} className="w-full h-full object-cover object-top" loading="lazy" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
                     <span className="text-white font-semibold flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                      <ExternalLink className="w-4 h-4" /> Probar Demo
+                      <ExternalLink className="w-4 h-4" /> Ver Sitio
                     </span>
                   </div>
                 </div>
@@ -169,9 +163,9 @@ function App() {
           </div>
           <div className="grid sm:grid-cols-3 gap-8">
             {[
-              { num: '1', title: 'Elige tu Plantilla', desc: 'Revisa la galería y prueba las demos en vivo. Elige la que más te guste.' },
-              { num: '2', title: 'Personalizamos', desc: 'Te ajustamos colores, textos, imágenes y dominio para que sea 100% tuyo.' },
-              { num: '3', title: 'Publicamos', desc: 'Lo subimos a internet en 24 horas y te entregamos todo listo.' },
+              { num: '1', title: 'Elige tu Plantilla', desc: 'Revisa los sitios reales terminados y elige el diseño que más te guste.' },
+              { num: '2', title: 'Personalizamos', desc: 'Te ajustamos colores, textos, logo e imágenes para que sea 100% tuyo.' },
+              { num: '3', title: 'Publicamos', desc: 'Lo subimos a internet en 24 horas con tu dominio propio.' },
             ].map(step => (
               <div key={step.num} className="text-center">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white text-2xl font-bold flex items-center justify-center mx-auto shadow-lg shadow-blue-200">{step.num}</div>
@@ -209,39 +203,6 @@ function App() {
       <footer className="bg-gray-900 text-gray-400 py-8 px-4 text-center text-sm">
         <p>&copy; 2026 MiPaginaWeb. Todos los derechos reservados.</p>
       </footer>
-    </div>
-  )
-}
-
-function TemplatePreview({ template, onBack }) {
-  const renderDemo = () => {
-    switch (template.category) {
-      case 'landing': return <LandingDemo template={template} />
-      case 'ecommerce': return <EcommerceDemo template={template} />
-      case 'corporativa': return <CorporateDemo template={template} />
-      case 'saas': return <SaasDemo template={template} />
-      case 'blog': return <BlogDemo template={template} />
-      default: return <LandingDemo template={template} />
-    }
-  }
-
-  return (
-    <div className="min-h-screen bg-white">
-      <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 px-4 py-2 flex items-center justify-between">
-        <button onClick={onBack} className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Volver
-        </button>
-        <div className="flex items-center gap-2">
-          <span className="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-700 capitalize font-medium">{template.category}</span>
-          <span className="text-sm font-semibold text-gray-900 hidden sm:inline">{template.title}</span>
-        </div>
-        <a href="#contacto" onClick={onBack} className="text-xs sm:text-sm bg-blue-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium hover:bg-blue-700 transition-all">
-          Quiero esta plantilla
-        </a>
-      </div>
-      <div id="demo-content" className="min-h-[calc(100vh-48px)]">
-        {renderDemo()}
-      </div>
     </div>
   )
 }
