@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContainerPro | Arriendo de Contenedores - Template Demo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <base href="/templates/rizoma-space/">
+</head>
+<body>
+  <div id="app">
+
+  <nav class="navbar navbar-expand-lg fixed-top" id="header">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <div class="header__logo-placeholder">R</div>
+        <span class="header__logo-text">Container <span>Pro</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="#como-funciona">Cómo Funciona</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certificacion">Certificación</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link nav-link--cta btn btn--primary btn-sm px-3 py-1" href="#cotizacion">Cotizar</a></li>
+        </ul>
+      </div>
+      <a href="#" class="btn btn--whatsapp-header d-none d-lg-inline-flex ms-3" onclick="return false;">
+        <i class="fab fa-whatsapp me-1"></i> +56 9 XXXX XXXX
+      </a>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero__overlay"></div>
+    <div class="hero__pattern"></div>
+    <div class="container">
+      <div class="row align-items-center g-5 hero__row">
+        <div class="col-lg-6 text-center text-lg-start">
+          <span class="hero__badge">Arriendo de Contenedores</span>
+          <div class="hero__cert-badge">
+            <i class="fas fa-certificate"></i>
+            <span>Certificados con <strong>Resolución Sanitaria</strong> para residuos no peligrosos</span>
+          </div>
+          <h1 class="hero__title">
+            Retiro de Residuos <span>No Peligrosos</span><br>
+            Sin Complicaciones
+          </h1>
+          <p class="hero__subtitle">
+            Solucionamos la gestión de residuos no peligrosos para tu empresa o proyecto.
+            Te dejamos el contenedor, lo llenas a tu ritmo y nosotros lo retiramos con la 
+            certificación sanitaria que garantiza una disposición final responsable.
+          </p>
+          <div class="hero__actions d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+            <a href="#cotizacion" class="btn btn--primary">
+              <i class="fas fa-file-invoice"></i> Cotiza Ahora
+            </a>
+            <a href="#servicios" class="btn btn--outline">Ver Servicios</a>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div class="hero__image-box mx-auto hero__image-placeholder">
+            <i class="fas fa-truck-moving"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">Nuestros <span>Servicios</span></h2>
+        <p class="section__desc mx-auto">
+          Ofrecemos soluciones simples para la gestión de residuos no peligrosos 
+          en la región. Servicio para constructoras, particulares, 
+          empresas y proyectos de toda escala.
+        </p>
+      </div>
+      <div class="trusted-bar row text-center justify-content-center g-0 mb-5 pb-2">
+        <div class="col-6 col-md">
+          <span class="trusted__number">+<span class="counter" data-target="50">0</span></span>
+          <span class="trusted__label d-block">Proyectos Completados</span>
+        </div>
+        <div class="col-6 col-md">
+          <span class="trusted__number"><span class="counter" data-target="100">0</span>%</span>
+          <span class="trusted__label d-block">Cobertura Local</span>
+        </div>
+        <div class="col-6 col-md">
+          <span class="trusted__number">24/7</span>
+          <span class="trusted__label d-block">Atención al Cliente</span>
+        </div>
+        <div class="col-6 col-md">
+          <span class="trusted__number">+<span class="counter" data-target="5">0</span></span>
+          <span class="trusted__label d-block">Años de Experiencia</span>
+        </div>
+        <div class="col-6 col-md">
+          <span class="trusted__number"><i class="fas fa-certificate"></i></span>
+          <span class="trusted__label d-block">Resolución Sanitaria</span>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-6">
+          <div class="service-card h-100 tilt reveal reveal-delay-1">
+            <div class="service-card__icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3 class="service-card__title">Arriendo de Contenedores</h3>
+            <p class="service-card__desc">
+              Contenedores de distintas capacidades para retiro de escombros. 
+              Los dejamos en tu ubicación y los retiramos cuando tú decidas.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="service-card h-100 tilt reveal reveal-delay-2">
+            <div class="service-card__icon">
+              <i class="fas fa-recycle"></i>
+            </div>
+            <h3 class="service-card__title">Retiro de Escombros y Residuos</h3>
+            <p class="service-card__desc">
+              Servicio profesional de retiro de escombros. Nos encargamos del retiro y disposición final de 
+              tierra, hormigón, maderas y residuos no peligrosos con Resolución Sanitaria.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="como-funciona">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">¿Cómo <span>Funciona?</span></h2>
+        <p class="section__desc mx-auto">
+          Tres pasos simples para tu retiro de escombros.
+        </p>
+      </div>
+      <div class="steps mx-auto">
+        <div class="step reveal reveal-delay-1">
+          <div class="step__number">1</div>
+          <div class="step__content">
+            <h3>Nos Contactas</h3>
+            <p>Escríbenos por WhatsApp o llámanos. Cuéntanos qué necesitas y te daremos el contenedor adecuado.</p>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step__number">2</div>
+          <div class="step__content">
+            <h3>Instalamos el Contenedor</h3>
+            <p>Llevamos el contenedor a tu domicilio, obra o terreno. Lo llenas en los días que acordemos.</p>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step__number">3</div>
+          <div class="step__content">
+            <h3>Lo Retiramos</h3>
+            <p>Pasamos a buscar el contenedor y nos encargamos de la disposición final responsable de los residuos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="galeria">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">Galería de <span>Trabajos</span></h2>
+        <p class="section__desc mx-auto">
+          Conoce algunos de los proyectos donde hemos entregado nuestros servicios 
+          de arriendo de contenedores y retiro de escombros.
+        </p>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-4 col-sm-6"><div class="gallery__item gallery__item--placeholder tilt reveal reveal-delay-1"><i class="fas fa-image"></i><span>Proyecto 1</span></div></div>
+        <div class="col-md-4 col-sm-6"><div class="gallery__item gallery__item--placeholder tilt reveal reveal-delay-2"><i class="fas fa-image"></i><span>Proyecto 2</span></div></div>
+        <div class="col-md-4 col-sm-6"><div class="gallery__item gallery__item--placeholder tilt reveal reveal-delay-3"><i class="fas fa-image"></i><span>Proyecto 3</span></div></div>
+        <div class="col-md-4 col-sm-6"><div class="gallery__item gallery__item--placeholder tilt reveal reveal-delay-4"><i class="fas fa-image"></i><span>Proyecto 4</span></div></div>
+        <div class="col-md-4 col-sm-6"><div class="gallery__item gallery__item--placeholder tilt reveal reveal-delay-1"><i class="fas fa-image"></i><span>Proyecto 5</span></div></div>
+        <div class="col-md-4 col-sm-6"><div class="gallery__item gallery__item--placeholder tilt reveal reveal-delay-2"><i class="fas fa-image"></i><span>Proyecto 6</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="certification" id="certificacion">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">Resolución <span>Sanitaria</span></h2>
+        <p class="section__desc mx-auto">
+          Trabajamos con todas las garantías legales y ambientales para tu tranquilidad.
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="certification__card reveal">
+            <div class="certification__icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Certificados para Residuos No Peligrosos</h3>
+            <p>
+              Contamos con <strong>Resolución Sanitaria</strong> que nos autoriza para la recolección, 
+              transporte y disposición final de residuos no peligrosos (escombros, tierra, hormigón, 
+              maderas, etc.). Esto asegura que tu empresa cumple con la normativa vigente al contratar 
+              nuestros servicios, evitando multas y problemas legales.
+            </p>
+            <div class="certification__badges">
+              <div class="cert-badge"><i class="fas fa-check-circle"></i><span>Recolección Autorizada</span></div>
+              <div class="cert-badge"><i class="fas fa-check-circle"></i><span>Transporte Certificado</span></div>
+              <div class="cert-badge"><i class="fas fa-check-circle"></i><span>Disposición Final Responsable</span></div>
+            </div>
+            <a href="#" class="btn btn--primary" onclick="return false;">
+              <i class="fab fa-whatsapp"></i> Solicita más información
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage" id="cobertura">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">Cobertura <span>Local</span></h2>
+        <p class="section__desc mx-auto">
+          Cubrimos toda el área metropolitana y sectores aledaños. 
+          Consúltanos si tu ubicación está dentro de nuestra zona de servicio.
+        </p>
+      </div>
+      <div class="coverage__map">
+        <div class="coverage__placeholder">
+          <i class="fas fa-map-marked-alt"></i>
+          <p>Área de cobertura y alrededores</p>
+          <a href="#" class="btn btn--primary" onclick="return false;">
+            <i class="fab fa-whatsapp"></i> Consulta si llegamos a tu sector
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote" id="cotizacion">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">Solicita tu <span>Cotización</span></h2>
+        <p class="section__desc mx-auto">
+          Cuéntanos qué necesitas y te responderemos en minutos.
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <form class="quote__form reveal" id="quoteForm" onsubmit="event.preventDefault(); alert('¡Gracias por tu interés! Te contactaremos pronto.');">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="name">Nombre completo *</label>
+                <input type="text" class="form-control" id="name" name="name" required placeholder="Tu nombre">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="company">Empresa</label>
+                <input type="text" class="form-control" id="company" name="company" placeholder="Nombre de tu empresa">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="email">Email *</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="correo@ejemplo.cl">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="phone">Teléfono *</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required placeholder="+56 9 XXXX XXXX">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="service">Tipo de servicio</label>
+                <select class="form-select" id="service" name="service">
+                  <option value="">Selecciona...</option>
+                  <option value="arriendo-contenedor">Arriendo de Contenedor</option>
+                  <option value="retiro-escombros">Retiro de Escombros</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="volume">Volumen estimado</label>
+                <select class="form-select" id="volume" name="volume">
+                  <option value="">Selecciona...</option>
+                  <option value="pequeno">Pequeño</option>
+                  <option value="mediano">Mediano</option>
+                  <option value="grande">Grande</option>
+                  <option value="no-seguro">No estoy seguro</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="location">Dirección del servicio</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Sector / calle">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="message">Mensaje o detalles adicionales</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Cuéntanos más sobre tu proyecto..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary btn--large w-100 mt-4">
+              <i class="fab fa-whatsapp"></i> Enviar cotización
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2 class="section__title">Contácta <span>con Nosotros</span></h2>
+        <p class="section__desc mx-auto">
+          Estamos listos para ayudarte. Elige el canal que prefieras.
+        </p>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="contact__card tilt text-center">
+            <div class="contact__card-icon"><i class="fab fa-whatsapp"></i></div>
+            <h3>WhatsApp</h3>
+            <p>Respuesta rápida</p>
+            <span class="btn btn--whatsapp disabled">+56 9 XXXX XXXX</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact__card tilt text-center">
+            <div class="contact__card-icon"><i class="far fa-envelope"></i></div>
+            <h3>Email</h3>
+            <p>Escríbenos cuando quieras</p>
+            <span class="btn btn--email disabled">contacto@tusitio.cl</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact__card tilt text-center">
+            <div class="contact__card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>Ubicación</h3>
+            <p>Tu ciudad, Chile</p>
+            <span class="contact__link">Cobertura en toda la región</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="footer__logo-placeholder">R</div>
+          <p class="footer__text">
+            ContainerPro - Gestión profesional de residuos no peligrosos.
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer__links">
+            <h4>Enlaces</h4>
+            <ul>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#servicios">Servicios</a></li>
+              <li><a href="#galeria">Galería</a></li>
+              <li><a href="#como-funciona">Cómo Funciona</a></li>
+              <li><a href="#certificacion">Certificación</a></li>
+              <li><a href="#cobertura">Cobertura</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer__contact">
+            <h4>Contacto</h4>
+            <a href="#"><i class="fab fa-whatsapp"></i> +56 9 XXXX XXXX</a>
+            <a href="#"><i class="fab fa-whatsapp"></i> +56 9 XXXX XXXX</a>
+            <a href="#"><i class="far fa-envelope"></i> contacto@tusitio.cl</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 ContainerPro. Template demo de MiPaginaWeb.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="whatsapp-float" aria-label="WhatsApp" onclick="return false;">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  </div>
+</body>
+</html>
