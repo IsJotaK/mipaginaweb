@@ -3,6 +3,7 @@ import { LandingDemo } from './demos/LandingDemo'
 import { EcommerceDemo } from './demos/EcommerceDemo'
 import { CorporateDemo } from './demos/CorporateDemo'
 import { SaasDemo } from './demos/SaasDemo'
+import { MicotizadorDemo } from './demos/MicotizadorDemo'
 import { BlogDemo } from './demos/BlogDemo'
 
 const templateLookup = {
@@ -56,7 +57,7 @@ export default function PreviewPage() {
       case 'landing': return <LandingDemo template={template} />
       case 'ecommerce': return <EcommerceDemo template={template} />
       case 'corporativa': return <CorporateDemo template={template} />
-      case 'saas': return <SaasDemo template={template} />
+      case 'saas': return <MicotizadorDemo />
       case 'blog': return <BlogDemo template={template} />
       default: return <LandingDemo template={template} />
     }
