@@ -212,7 +212,7 @@ export function CorporateDemo({ template }) {
           </div>
           <div className="space-y-6">
             {[
-              { icon: Phone, label: 'Teléfono', value: '+56 9 8661 8409' },
+              { icon: Phone, label: 'Teléfono', value: '+56 9 XXXX XXXX' },
               { icon: Mail, label: 'Email', value: 'contacto@ejemplo.cl' },
               { icon: MapPin, label: 'Dirección', value: 'Av. Principal 123, Temuco' },
             ].map(item => (
