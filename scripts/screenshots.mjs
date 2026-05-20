@@ -9,9 +9,9 @@ const outDir = join(root, 'public', 'screenshots');
 mkdirSync(outDir, { recursive: true });
 
 const templates = [
-  { name: 'rizoma-space', id: 1 },
+  { name: 'rizoma-space', id: 'contenedores' },
   { name: 'micotizador', id: 2 },
-  { name: 'tienda-online', id: 3 },
+  { name: 'tienda-online', id: 'tienda-online' },
   { name: 'bufete-juridico', id: 4 },
   { name: 'restaurante', id: 5 },
   { name: 'blog-personal', id: 6 },
@@ -32,20 +32,20 @@ async function run() {
   const page = await context.newPage();
 
   for (const t of templates) {
-    console.log(`📸 Capturing: ${t.name}`);
+    console.log(`Capturing: ${t.name}`);
     await page.goto(`http://localhost:5173/preview/${t.id}`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(3000);
 
     const filePath = join(outDir, `${t.name}.jpg`);
-    await page.screenshot({ path: filePath, fullPage: true, type: 'jpeg', quality: 85 });
-    console.log(`  ✅ screenshots/${t.name}.jpg`);
+    await page.screenshot({ path: filePath, fullPage: false, type: 'jpeg', quality: 95 });
+    console.log(`  -> screenshots/${t.name}.jpg`);
   }
 
   await browser.close();
-  console.log('🎉 Todas las screenshots capturadas!');
+  console.log('All screenshots captured!');
 }
 
 run().catch(err => {
-  console.error('❌ Error:', err);
+  console.error('Error:', err);
   process.exit(1);
 });
