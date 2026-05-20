@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaStore | Tienda Online - Template Demo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <base href="/templates/tienda-online/">
+</head>
+<body>
+  <div class="announcement" id="announcement">
+    <div class="container" style="position:relative">
+      🚀 Demo interactiva — Esta es una plantilla de demostración
+      <button onclick="document.getElementById('announcement').style.display='none'" aria-label="Cerrar">&times;</button>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <div class="header__logo">Nova<span>Store</span></div>
+        <div class="header__search">
+          <input type="text" id="searchInput" placeholder="Buscar productos..." oninput="filterProducts()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <div class="header__actions">
+          <button onclick="openCart()" aria-label="Carrito">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-search">
+    <input type="text" id="mobileSearch" placeholder="Buscar productos..." oninput="filterProducts()">
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Tu tienda online <br>en minutos</h1>
+      <p>Explora nuestro catálogo de productos con una experiencia de compra completa. Todo es demo, nada es real.</p>
+      <a href="#productos" class="btn btn--primary">Ver Productos</a>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="categories" id="categorias">
+      <div class="categories__grid" id="categoriesGrid"></div>
+    </div>
+
+    <div class="products-header" id="productos">
+      <div class="category-pills" id="pillsContainer"></div>
+    </div>
+    <h2 class="section-title">Productos</h2>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar__header">
+      <h2>Carrito</h2>
+      <button class="cart-sidebar__close" onclick="closeCart()">&times;</button>
+    </div>
+    <div class="cart-sidebar__body" id="cartBody"></div>
+    <div class="cart-sidebar__footer" id="cartFooter">
+      <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
+      <button class="btn btn--solid btn--full" onclick="openCheckout()">Ir a Pagar</button>
+    </div>
+  </div>
+
+  <div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout">
+      <div class="checkout__header">
+        <button onclick="closeCheckout()">&larr;</button>
+        <h1>Finalizar Compra</h1>
+      </div>
+      <div class="checkout__demo-banner">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+        <span>DEMO — Esta es una tienda de demostración. No se procesarán pagos reales.</span>
+      </div>
+      <div class="success-banner" id="successBanner">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span>¡Pedido confirmado como demo!</span>
+      </div>
+      <div class="checkout__grid" id="checkoutContent">
+        <form class="checkout__form" id="checkoutForm" onsubmit="return false;">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">Información de envío</h3>
+          <div class="form-group">
+            <label for="cf_name">Nombre completo</label>
+            <input type="text" id="cf_name" required placeholder="Ej: Juan Pérez" maxlength="80">
+          </div>
+          <div class="form-group">
+            <label for="cf_email">Email</label>
+            <input type="email" id="cf_email" required placeholder="correo@ejemplo.cl" maxlength="60">
+          </div>
+          <div class="form-group">
+            <label for="cf_phone">Teléfono</label>
+            <input type="tel" id="cf_phone" required placeholder="+56 9 XXXX XXXX" maxlength="20">
+          </div>
+          <div class="form-group">
+            <label for="cf_address">Dirección</label>
+            <input type="text" id="cf_address" required placeholder="Calle, número, comuna" maxlength="120">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf_city">Ciudad</label>
+              <input type="text" id="cf_city" required placeholder="Santiago" maxlength="40">
+            </div>
+            <div class="form-group">
+              <label for="cf_region">Región</label>
+              <input type="text" id="cf_region" required placeholder="Región Metropolitana" maxlength="40">
+            </div>
+          </div>
+        </form>
+        <div>
+          <div class="checkout__summary">
+            <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">Resumen del pedido</h3>
+            <div id="checkoutItems"></div>
+            <div class="summary-item"><span>Subtotal</span><span id="coSubtotal">$0</span></div>
+            <div class="summary-item"><span>Envío</span><span id="coShipping">$4.990</span></div>
+            <div class="summary-item summary-item--total"><span>Total</span><span id="coTotal">$0</span></div>
+          </div>
+          <button class="btn btn--solid btn--full checkout__confirm" onclick="placeOrder()">Completar pedido (Demo)</button>
+        </div>
+      </div>
+      <div class="confirmation" id="confirmation" style="display:none"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <div class="footer__brand">Nova<span>Store</span></div>
+        <p>Plantilla demo de tienda online para MiPaginaWeb. Todos los datos son ficticios.</p>
+      </div>
+      <div>
+        <h3>Categorías</h3>
+        <a href="#" onclick="filterByCategory('todas'); return false">Todas</a>
+        <a href="#" onclick="filterByCategory('electronica'); return false">Electrónica</a>
+        <a href="#" onclick="filterByCategory('ropa'); return false">Ropa y Moda</a>
+        <a href="#" onclick="filterByCategory('hogar'); return false">Hogar y Jardín</a>
+      </div>
+      <div>
+        <h3>MiPaginaWeb</h3>
+        <a href="https://mipaginaweb-alpha.vercel.app" target="_blank">Ver galería</a>
+        <a href="https://mipaginaweb-alpha.vercel.app" target="_blank">Adquiere esta plantilla</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">&copy; 2026 NovaStore — Template demo de MiPaginaWeb</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

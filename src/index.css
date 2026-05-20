@@ -1,14 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #f0fdf4;
-  --color-brand-100: #d9fae5;
-  --color-brand-200: #b3f0cc;
-  --color-brand-300: #7de3a6;
-  --color-brand-400: #3ed47a;
-  --color-brand-500: #228b4a;
-  --color-brand-600: #1a6b3c;
-  --color-brand-700: #14522e;
-  --color-brand-800: #124226;
-  --color-brand-900: #0f3620;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-ui-50: #F8FAFC;
+  --color-ui-100: #F1F5F9;
+  --color-ui-200: #E2E8F0;
+  --color-ui-300: #CBD5E1;
+  --color-ui-400: #94A3B8;
+  --color-ui-500: #64748B;
+  --color-ui-600: #475569;
+  --color-ui-700: #334155;
+  --color-ui-800: #1E293B;
+  --color-ui-900: #0F172A;
+  --color-accent-50: #EEF2FF;
+  --color-accent-100: #E0E7FF;
+  --color-accent-200: #C7D2FE;
+  --color-accent-500: #4F46E5;
+  --color-accent-600: #4338CA;
+  --color-accent-700: #3730A3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #4F46E5;
+  color: white;
 }

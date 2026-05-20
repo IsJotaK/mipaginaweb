@@ -23,6 +23,7 @@ const templateLookup = {
 
 const standaloneTemplates = {
   'contenedores': '/templates/rizoma-space/index.html',
+  'tienda-online': '/templates/tienda-online/index.html',
 }
 
 export default function PreviewPage() {

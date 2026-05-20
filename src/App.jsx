@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Search, ChevronDown, Star, ExternalLink } from 'lucide-react'
+import { Search, ExternalLink, ArrowRight, Check, Menu, X, Sparkles, Palette, Rocket } from 'lucide-react'
 
 const templates = [
   { id: 'contenedores', title: 'ContainerPro', category: 'landing', tags: ['Servicios', 'Contenedores'], img: '/screenshots/rizoma-space.jpg', desc: 'Landing page para empresa de servicios con galería, certificaciones y cotizador WhatsApp.' },
   { id: 2, title: 'MiCotizador', category: 'saas', tags: ['Herramienta', 'Cotizaciones'], img: '/screenshots/micotizador.jpg', desc: 'App para generar cotizaciones con catálogo de productos, clientes y vista previa en vivo.' },
-  { id: 3, title: 'Tienda Online', category: 'ecommerce', tags: ['E-commerce', 'Catálogo'], img: '/screenshots/tienda-online.jpg', desc: 'Tienda virtual con carrito de compras, pasarela de pago y panel de administración.' },
+  { id: 'tienda-online', title: 'NovaStore', category: 'ecommerce', tags: ['E-commerce', 'Catálogo', 'Carrito'], img: '/screenshots/tienda-online.jpg', desc: 'Tienda virtual moderna con carrito de compras lateral, categorías y checkout simulado.' },
   { id: 4, title: 'Bufete Jurídico', category: 'corporativa', tags: ['Profesional', 'Servicios'], img: '/screenshots/bufete-juridico.jpg', desc: 'Web corporativa para estudios jurídicos con perfiles de abogados y blog.' },
   { id: 5, title: 'Restaurante', category: 'landing', tags: ['Gastronomía', 'Menú'], img: '/screenshots/restaurante.jpg', desc: 'Landing con menú digital, galería de platos y reservas online.' },
   { id: 6, title: 'Blog Personal', category: 'blog', tags: ['Contenido', 'Blog'], img: '/screenshots/blog-personal.jpg', desc: 'Blog moderno con sistema de artículos, categorías y newsletter.' },
@@ -25,10 +25,17 @@ const categories = [
   { value: 'blog', label: 'Blog' },
 ]
 
+const steps = [
+  { icon: Palette, title: 'Elige tu Plantilla', desc: 'Revisa sitios reales terminados y elige el diseño que más conecte con tu negocio.' },
+  { icon: Sparkles, title: 'Personalizamos', desc: 'Ajustamos colores, textos, logo e imágenes. Queda 100% a tu medida.' },
+  { icon: Rocket, title: 'Publicamos', desc: 'Subimos tu sitio a internet en 24 horas con dominio propio y todo listo.' },
+]
+
 function App() {
   const [filter, setFilter] = useState('todas')
   const [search, setSearch] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [formSent, setFormSent] = useState(false)
 
   const filtered = templates.filter(t => {
     const matchCategory = filter === 'todas' || t.category === filter
@@ -37,115 +44,121 @@ function App() {
     return matchCategory && matchSearch
   })
 
-  const openPreview = (id) => {
-    window.open(`/preview/${id}`, '_blank')
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <a href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-sm">M</div>
-              <span className="font-semibold text-lg">Mi<span className="text-blue-600">Pagina</span>Web</span>
+    <div className="min-h-screen bg-ui-50 text-ui-900 font-sans antialiased selection:bg-accent-500 selection:text-white">
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mt-3 flex items-center justify-between rounded-2xl border border-ui-200/80 bg-white/80 px-4 py-2.5 shadow-sm backdrop-blur-xl sm:px-6">
+            <a href="/" className="flex items-center gap-2.5">
+              <div className="flex size-8 items-center justify-center rounded-lg bg-ui-900 text-white text-sm font-bold">M</div>
+              <span className="text-sm font-semibold tracking-tight">MiPaginaWeb</span>
             </a>
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-              <a href="#galeria" className="hover:text-blue-600 transition-colors">Galería</a>
-              <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Cómo Funciona</a>
-              <a href="#contacto" className="hover:text-blue-600 transition-colors">Contacto</a>
-              <a href="#cotizar" className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">Cotizar</a>
+            <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-ui-500">
+              {[
+                { label: 'Galería', href: '#galeria' },
+                { label: 'Cómo Funciona', href: '#como-funciona' },
+                { label: 'Contacto', href: '#contacto' },
+              ].map(link => (
+                <a key={link.href} href={link.href} className="rounded-lg px-3 py-2 transition-colors hover:bg-ui-100 hover:text-ui-900">{link.label}</a>
+              ))}
+              <a href="#contacto" className="ml-2 rounded-xl bg-ui-900 px-4 py-2 text-white text-sm font-medium transition-all hover:bg-ui-800">Cotizar</a>
             </nav>
-            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 rounded-lg hover:bg-gray-100">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} /></svg>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden rounded-lg p-2 text-ui-500 hover:bg-ui-100 transition-colors">
+              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3 text-sm font-medium">
-            <a href="#galeria" onClick={() => setMenuOpen(false)} className="block py-2 text-gray-600">Galería</a>
-            <a href="#como-funciona" onClick={() => setMenuOpen(false)} className="block py-2 text-gray-600">Cómo Funciona</a>
-            <a href="#contacto" onClick={() => setMenuOpen(false)} className="block py-2 text-gray-600">Contacto</a>
-            <a href="#cotizar" onClick={() => setMenuOpen(false)} className="block py-2 text-blue-600 font-semibold">Cotizar</a>
+          <div className="mx-auto mt-2 max-w-7xl px-4 sm:px-6 lg:px-8 md:hidden">
+            <div className="rounded-2xl border border-ui-200/80 bg-white p-3 shadow-lg backdrop-blur-xl space-y-1 text-sm font-medium text-ui-600">
+              <a href="#galeria" onClick={() => setMenuOpen(false)} className="block rounded-lg px-3 py-2.5 hover:bg-ui-100 hover:text-ui-900 transition-colors">Galería</a>
+              <a href="#como-funciona" onClick={() => setMenuOpen(false)} className="block rounded-lg px-3 py-2.5 hover:bg-ui-100 hover:text-ui-900 transition-colors">Cómo Funciona</a>
+              <a href="#contacto" onClick={() => setMenuOpen(false)} className="block rounded-lg px-3 py-2.5 hover:bg-ui-100 hover:text-ui-900 transition-colors">Contacto</a>
+              <a href="#cotizar" onClick={() => setMenuOpen(false)} className="block rounded-lg bg-ui-900 px-3 py-2.5 text-white text-center mt-2">Cotizar</a>
+            </div>
           </div>
         )}
       </header>
 
-      <section className="pt-32 pb-16 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent pointer-events-none" />
-        <div className="max-w-3xl mx-auto relative">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold mb-6">
-            <Star className="w-3.5 h-3.5" /> +12 plantillas profesionales
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-tight">
-            Tu página web en <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">24 horas</span>
-          </h1>
-          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto">
-            Explora sitios web reales terminados. Elige el que más te guste y lo personalizamos para tu negocio.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href="#galeria" className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2">
-              Ver Galería <ChevronDown className="w-4 h-4" />
-            </a>
-            <a href="#como-funciona" className="bg-white text-gray-700 px-6 py-3 rounded-xl font-semibold border border-gray-200 hover:border-gray-300 transition-all">
-              Cómo Funciona
-            </a>
+      <section className="relative overflow-hidden pt-36 pb-20 sm:pb-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-accent-50/50 to-transparent pointer-events-none" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-ui-200 bg-white px-4 py-1.5 text-xs font-medium text-ui-500 mb-8 shadow-xs">
+              <span className="flex size-2 rounded-full bg-accent-500" />
+              +12 plantillas profesionales
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ui-900 leading-[1.08]">
+              Tu página web en{' '}
+              <span className="text-accent-500">24 horas</span>
+            </h1>
+            <p className="mt-5 text-base sm:text-lg text-ui-500 leading-relaxed max-w-lg mx-auto">
+              Explora sitios web reales terminados. Elige el que más te guste y lo personalizamos para tu negocio.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <a href="#galeria" className="inline-flex items-center gap-2 rounded-xl bg-ui-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-ui-800 shadow-lg shadow-ui-900/10">
+                Ver Galería <ArrowRight className="size-4" />
+              </a>
+              <a href="#como-funciona" className="inline-flex items-center gap-2 rounded-xl border border-ui-200 bg-white px-5 py-2.5 text-sm font-medium text-ui-700 transition-all hover:border-ui-300 hover:bg-ui-50">
+                Cómo Funciona
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="galeria" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Galería de <span className="text-blue-600">Plantillas</span></h2>
-          <p className="mt-2 text-gray-600">Haz click en cualquier plantilla para ver el sitio completo</p>
+      <section id="galeria" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-24">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ui-900">Galería</h2>
+          <p className="mt-3 text-ui-500 text-base max-w-md mx-auto">Haz clic en cualquier plantilla para ver el sitio completo</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-          <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+          <div className="flex flex-wrap gap-1.5">
             {categories.map(cat => (
               <button key={cat.value} onClick={() => setFilter(cat.value)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`rounded-lg px-3.5 py-1.5 text-sm font-medium transition-all cursor-pointer ${
                   filter === cat.value
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
-                    : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-300 hover:text-blue-600'
+                    ? 'bg-ui-900 text-white shadow-xs'
+                    : 'text-ui-500 hover:text-ui-900 hover:bg-ui-100'
                 }`}
               >{cat.label}</button>
             ))}
           </div>
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <div className="relative w-full sm:w-60">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-ui-400 pointer-events-none" />
             <input type="text" placeholder="Buscar plantilla..." value={search} onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
+              className="w-full rounded-xl border border-ui-200 bg-white py-2 pl-9 pr-4 text-sm placeholder:text-ui-400 focus:outline-none focus:ring-2 focus:ring-accent-500/15 focus:border-accent-500 transition-all" />
           </div>
         </div>
 
         {filtered.length === 0 ? (
-          <div className="text-center py-20 text-gray-500">
-            <p className="text-lg">No encontramos plantillas con ese filtro</p>
-            <button onClick={() => { setFilter('todas'); setSearch('') }} className="mt-3 text-blue-600 hover:underline text-sm">Limpiar filtros</button>
+          <div className="text-center py-24 text-ui-500">
+            <p className="text-base">No encontramos plantillas con ese filtro</p>
+            <button onClick={() => { setFilter('todas'); setSearch('') }} className="mt-3 text-sm text-accent-500 hover:text-accent-600 font-medium cursor-pointer">Limpiar filtros</button>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map(t => (
-              <article key={t.id} onClick={() => openPreview(t.id)}
-                className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                <div className="h-48 bg-gray-100 overflow-hidden relative">
-                  <img src={t.img} alt={t.title} className="w-full h-full object-cover object-top" loading="lazy" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
-                    <span className="text-white font-semibold flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                      <ExternalLink className="w-4 h-4" /> Ver Sitio
+              <article key={t.id} onClick={() => window.open(`/preview/${t.id}`, '_blank')}
+                className="group cursor-pointer rounded-2xl border border-ui-200/80 bg-white overflow-hidden transition-all duration-300 hover:border-ui-300 hover:shadow-lg hover:shadow-ui-900/5">
+                <div className="aspect-[4/3] bg-ui-100 overflow-hidden relative">
+                  <img src={t.img} alt={t.title} className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" loading="lazy" />
+                  <div className="absolute inset-0 bg-ui-900/0 group-hover:bg-ui-900/40 transition-all flex items-center justify-center">
+                    <span className="inline-flex items-center gap-1.5 rounded-xl bg-white/90 backdrop-blur px-4 py-2 text-xs font-medium text-ui-900 opacity-0 group-hover:opacity-100 transition-all translate-y-1 group-hover:translate-y-0 shadow-lg">
+                      <ExternalLink className="size-3.5" /> Ver Sitio
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 capitalize">{t.category}</span>
+                    <span className="text-xs font-medium px-2 py-0.5 rounded-md bg-ui-100 text-ui-600 capitalize">{t.category}</span>
                   </div>
-                  <h3 className="font-semibold text-gray-900">{t.title}</h3>
-                  <p className="text-sm text-gray-500 mt-1 line-clamp-2">{t.desc}</p>
+                  <h3 className="font-semibold text-ui-900 leading-snug">{t.title}</h3>
+                  <p className="text-sm text-ui-500 mt-1.5 line-clamp-2 leading-relaxed">{t.desc}</p>
                   <div className="flex flex-wrap gap-1.5 mt-3">
                     {t.tags.map(tag => (
-                      <span key={tag} className="text-xs px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">{tag}</span>
+                      <span key={tag} className="text-xs px-2 py-0.5 rounded-md bg-ui-50 text-ui-500 border border-ui-100">{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -155,53 +168,76 @@ function App() {
         )}
       </section>
 
-      <section id="como-funciona" className="bg-white py-20 px-4 scroll-mt-20 border-t border-gray-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">¿Cómo <span className="text-blue-600">Funciona?</span></h2>
-            <p className="mt-2 text-gray-600">Tres pasos para tener tu sitio web listo</p>
+      <section id="como-funciona" className="bg-white border-t border-ui-100 py-24 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ui-900">Cómo Funciona</h2>
+            <p className="mt-3 text-ui-500 text-base">Tres pasos para tener tu sitio web listo</p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-8">
-            {[
-              { num: '1', title: 'Elige tu Plantilla', desc: 'Revisa los sitios reales terminados y elige el diseño que más te guste.' },
-              { num: '2', title: 'Personalizamos', desc: 'Te ajustamos colores, textos, logo e imágenes para que sea 100% tuyo.' },
-              { num: '3', title: 'Publicamos', desc: 'Lo subimos a internet en 24 horas con tu dominio propio.' },
-            ].map(step => (
-              <div key={step.num} className="text-center">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white text-2xl font-bold flex items-center justify-center mx-auto shadow-lg shadow-blue-200">{step.num}</div>
-                <h3 className="mt-4 font-semibold text-gray-900">{step.title}</h3>
-                <p className="mt-2 text-sm text-gray-500">{step.desc}</p>
+          <div className="grid sm:grid-cols-3 gap-12 sm:gap-8">
+            {steps.map((step, i) => (
+              <div key={i} className="text-center">
+                <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-accent-50 text-accent-500 border border-accent-100/60 mb-5">
+                  <step.icon className="size-6" />
+                </div>
+                <div className="inline-flex items-center justify-center size-7 rounded-full bg-accent-500 text-white text-xs font-bold mb-4 -mt-2">{i + 1}</div>
+                <h3 className="font-semibold text-ui-900">{step.title}</h3>
+                <p className="mt-2 text-sm text-ui-500 leading-relaxed max-w-xs mx-auto">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contacto" className="py-20 px-4 scroll-mt-20">
-        <div className="max-w-xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">¿Listo para tu <span className="text-blue-600">página web?</span></h2>
-          <p className="mt-2 text-gray-600">Cuéntanos qué necesitas y te cotizamos sin compromiso</p>
-          <form className="mt-8 space-y-4 text-left" onSubmit={e => { e.preventDefault(); alert('¡Gracias! Te contactaremos pronto.') }}>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <input type="text" placeholder="Tu nombre" required className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
-              <input type="email" placeholder="Tu email" required className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
+      <section id="contacto" className="py-24 px-4 scroll-mt-24">
+        <div className="mx-auto max-w-xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ui-900">¿Listo para tu página web?</h2>
+            <p className="mt-3 text-ui-500 text-base">Cuéntanos qué necesitas y te cotizamos sin compromiso</p>
+          </div>
+          {formSent ? (
+            <div className="text-center py-16">
+              <div className="inline-flex items-center justify-center size-14 rounded-full bg-accent-50 text-accent-500 mb-5">
+                <Check className="size-7" />
+              </div>
+              <p className="text-lg font-semibold text-ui-900">¡Recibimos tu mensaje!</p>
+              <p className="text-sm text-ui-500 mt-1">Te contactaremos pronto.</p>
             </div>
-            <select className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400">
-              <option value="">Tipo de página que necesitas</option>
-              <option value="landing">Landing Page</option>
-              <option value="ecommerce">E-commerce</option>
-              <option value="corporativa">Corporativa</option>
-              <option value="saas">SaaS / App</option>
-              <option value="blog">Blog</option>
-            </select>
-            <textarea rows={4} placeholder="Cuéntanos sobre tu proyecto..." className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
-            <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">Enviar Cotización</button>
-          </form>
+          ) : (
+            <form className="space-y-4" onSubmit={e => { e.preventDefault(); setFormSent(true) }}>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input type="text" placeholder="Tu nombre" required
+                  className="w-full rounded-xl border border-ui-200 bg-white px-4 py-2.5 text-sm placeholder:text-ui-400 focus:outline-none focus:ring-2 focus:ring-accent-500/15 focus:border-accent-500 transition-all" />
+                <input type="email" placeholder="Tu email" required
+                  className="w-full rounded-xl border border-ui-200 bg-white px-4 py-2.5 text-sm placeholder:text-ui-400 focus:outline-none focus:ring-2 focus:ring-accent-500/15 focus:border-accent-500 transition-all" />
+              </div>
+              <select required
+                className="w-full rounded-xl border border-ui-200 bg-white px-4 py-2.5 text-sm text-ui-900 focus:outline-none focus:ring-2 focus:ring-accent-500/15 focus:border-accent-500 transition-all">
+                <option value="">Tipo de página que necesitas</option>
+                <option value="landing">Landing Page</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="corporativa">Corporativa</option>
+                <option value="saas">SaaS / App</option>
+                <option value="blog">Blog</option>
+              </select>
+              <textarea rows={4} placeholder="Cuéntanos sobre tu proyecto..."
+                className="w-full rounded-xl border border-ui-200 bg-white px-4 py-2.5 text-sm placeholder:text-ui-400 focus:outline-none focus:ring-2 focus:ring-accent-500/15 focus:border-accent-500 transition-all resize-none" />
+              <button type="submit"
+                className="w-full rounded-xl bg-ui-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-ui-800 shadow-lg shadow-ui-900/10 cursor-pointer">
+                Enviar Cotización
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
-      <footer className="bg-gray-900 text-gray-400 py-8 px-4 text-center text-sm">
-        <p>&copy; 2026 MiPaginaWeb. Todos los derechos reservados.</p>
+      <footer className="border-t border-ui-100 bg-white py-12 px-4">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-ui-400">
+          <p>© 2026 MiPaginaWeb. Todos los derechos reservados.</p>
+          <div className="flex items-center gap-4">
+            <span className="text-ui-300">Diseñado con precisión</span>
+          </div>
+        </div>
       </footer>
     </div>
   )
