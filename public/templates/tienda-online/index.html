@@ -41,10 +41,25 @@
   </div>
 
   <section class="hero">
-    <div class="container">
-      <h1>Tu tienda online <br>en minutos</h1>
-      <p>Explora nuestro catálogo de productos con una experiencia de compra completa. Todo es demo, nada es real.</p>
-      <a href="#productos" class="btn btn--primary">Ver Productos</a>
+    <div class="hero__slides" id="heroSlides"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content" id="heroContent">
+      <div class="hero__text" id="heroText">
+        <span class="hero__badge" id="heroBadge">Electrónica</span>
+        <h2 class="hero__title" id="heroTitle">Audífonos Bluetooth Pro</h2>
+        <p class="hero__desc" id="heroDesc">Sonido envolvente, cancelación de ruido y 40 horas de batería.</p>
+        <a href="#productos" class="btn btn--primary">Ver Productos</a>
+      </div>
+      <div class="hero__icon" id="heroIcon">🖥️</div>
+    </div>
+    <div class="hero__controls">
+      <button class="hero__arrow hero__arrow--prev" onclick="heroPrev()" aria-label="Anterior">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="hero__dots" id="heroDots"></div>
+      <button class="hero__arrow hero__arrow--next" onclick="heroNext()" aria-label="Siguiente">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </button>
     </div>
   </section>
 

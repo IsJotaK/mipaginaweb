@@ -49,6 +49,47 @@ const PRODUCTS = [
 
 const fmt = (n) => '$' + (n || 0).toLocaleString('es-CL')
 
+// Hero carousel
+const HERO_SLIDES = [
+  { id: 'elec-1', title: 'Audífonos Bluetooth Pro', cat: 'Electrónica', desc: 'Sonido envolvente, cancelación de ruido activa y 40 horas de batería para tu día a día.', icon: '🖥️', gradient: 'linear-gradient(135deg, #0e7490 0%, #06b6d4 100%)' },
+  { id: 'ropa-3', title: 'Chaqueta Impermeable', cat: 'Ropa y Moda', desc: 'Diseño minimalista, tejido waterproof y forro térmico. Perfecta para la ciudad y la montaña.', icon: '👕', gradient: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)' },
+  { id: 'hogar-1', title: 'Lámpara LED Inteligente', cat: 'Hogar y Jardín', desc: '16 millones de colores, control por app y compatible con Alexa. Ilumina tu hogar con estilo.', icon: '🏡', gradient: 'linear-gradient(135deg, #6d28d9 0%, #a855f7 100%)' },
+  { id: 'dep-4', title: 'Mochila Deportiva 35L', cat: 'Deportes', desc: 'Compartimentos inteligentes, tejido antiadherente y espalda acolchada. Tu mejor compañera de entrenamiento.', icon: '⚽', gradient: 'linear-gradient(135deg, #065f46 0%, #10b981 100%)' },
+]
+
+let heroIndex = 0
+
+function renderHero() {
+  const s = HERO_SLIDES[heroIndex]
+  const slides = document.getElementById('heroSlides')
+  slides.innerHTML = HERO_SLIDES.map((slide, i) =>
+    `<div class="hero__slide${i === heroIndex ? ' active' : ''}" style="background:${slide.gradient}">
+      <div class="hero__slide-icon">${slide.icon}</div>
+    </div>`
+  ).join('')
+
+  document.getElementById('heroBadge').textContent = s.cat
+  document.getElementById('heroTitle').textContent = s.title
+  document.getElementById('heroDesc').textContent = s.desc
+  document.getElementById('heroIcon').textContent = s.icon
+
+  document.getElementById('heroDots').innerHTML = HERO_SLIDES.map((_, i) =>
+    `<button class="hero__dot${i === heroIndex ? ' active' : ''}" onclick="heroGo(${i})" aria-label="Slide ${i + 1}"></button>`
+  ).join('')
+}
+
+function heroNext() { heroIndex = (heroIndex + 1) % HERO_SLIDES.length; renderHero() }
+function heroPrev() { heroIndex = (heroIndex - 1 + HERO_SLIDES.length) % HERO_SLIDES.length; renderHero() }
+function heroGo(i) { heroIndex = i; renderHero() }
+
+let heroTimer
+function startHero() { heroTimer = setInterval(heroNext, 5000) }
+function restartHero() { clearInterval(heroTimer); startHero() }
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.hero__controls')) { clearInterval(heroTimer); setTimeout(startHero, 8000) }
+})
+
 // State
 let cart = []
 let currentFilter = 'todas'
@@ -354,11 +395,13 @@ function showToast(msg) {
 // Init
 function init() {
   cart = loadCart()
+  renderHero()
   renderCategories()
   renderPills()
   renderProducts()
   renderCartBadge()
   renderCartSidebar()
+  startHero()
 }
 
 document.addEventListener('DOMContentLoaded', init)
